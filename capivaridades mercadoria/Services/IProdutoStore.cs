@@ -10,6 +10,8 @@ namespace capivaridades_mercadoria.Services
 
         Task SalvarAsync(Produto produto);
 
+        Task<Produto> AdicionarAsync(Produto produto);
+
         Task<bool> ExcluirAsync(int id);
     }
 }

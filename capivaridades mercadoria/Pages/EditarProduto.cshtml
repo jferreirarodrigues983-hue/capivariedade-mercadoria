@@ -1,7 +1,7 @@
 @page
 @model EditarProdutoModel
 @{
-    ViewData["Title"] = "Cadastrar";
+    ViewData["Title"] = "Editar produto";
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -13,7 +13,7 @@
 
 @if (Model.ModoSelecao)
 {
-    <p>Escolha qual produto deseja cadastrar:</p>
+    <p>Escolha qual produto deseja editar:</p>
 
     <div class="grid-produtos grid-produtos--compacto">
         @foreach (var produto in Model.Produtos)
@@ -41,7 +41,7 @@
 }
 else
 {
-    <p>Cadastre as informações do <strong>@Model.Categoria</strong> abaixo.</p>
+    <p>Altere as informações do <strong>@Model.Categoria</strong> abaixo.</p>
 
     <form method="post">
         <input type="hidden" asp-for="ProdutoId" />

@@ -1,0 +1,58 @@
+@page
+@model CadastrarProdutoModel
+@{
+    ViewData["Title"] = "Cadastrar";
+}
+
+@if (TempData["MensagemSucesso"] is string sucesso)
+{
+    <div class="alert alert-success" role="alert">@sucesso</div>
+}
+
+<div class="pagina-cadastro">
+    <h1>@ViewData["Title"]</h1>
+    <p class="pagina-cadastro__descricao">
+        Adicione um novo produto ao catálogo da loja. Os dados ficam salvos automaticamente.
+    </p>
+
+    <section class="barra-cadastro barra-cadastro--pagina">
+        <form method="post" class="barra-cadastro__form">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-2"></div>
+
+            <div class="barra-cadastro__campos">
+                <div class="barra-cadastro__campo">
+                    <label asp-for="Nome" class="form-label"></label>
+                    <input asp-for="Nome" class="form-control" placeholder="Ex.: iPhone 16" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+                <div class="barra-cadastro__campo">
+                    <label asp-for="Preco" class="form-label"></label>
+                    <input asp-for="Preco" class="form-control" placeholder="Ex.: R$ 2.499,00" />
+                    <span asp-validation-for="Preco" class="text-danger"></span>
+                </div>
+                <div class="barra-cadastro__campo">
+                    <label asp-for="Categoria" class="form-label"></label>
+                    <select asp-for="Categoria" class="form-select">
+                        <option value="Celular">Celular</option>
+                        <option value="Videogame">Videogame</option>
+                    </select>
+                    <span asp-validation-for="Categoria" class="text-danger"></span>
+                </div>
+                <div class="barra-cadastro__campo barra-cadastro__campo--imagem">
+                    <label asp-for="ImagemUrl" class="form-label"></label>
+                    <input asp-for="ImagemUrl" class="form-control" placeholder="https://... (opcional)" />
+                    <span asp-validation-for="ImagemUrl" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="pagina-cadastro__acoes">
+                <button class="btn btn-success barra-cadastro__botao" type="submit">Cadastrar produto</button>
+                <a class="btn btn-outline-secondary" asp-page="/Index">Ver produtos na loja</a>
+            </div>
+        </form>
+    </section>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

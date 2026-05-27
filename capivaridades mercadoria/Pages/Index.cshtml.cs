@@ -23,6 +23,22 @@ namespace capivaridades_mercadoria.Pages
 
         public async Task OnGetAsync()
         {
+            await CarregarProdutosAsync();
+        }
+
+        public async Task<IActionResult> OnPostExcluirAsync(int id)
+        {
+            var removido = await _produtoStore.ExcluirAsync(id);
+            if (!removido)
+            {
+                TempData["MensagemErro"] = "Não foi possível excluir. É necessário manter pelo menos um produto no catálogo.";
+            }
+
+            return RedirectToPage(new { busca = Busca });
+        }
+
+        private async Task CarregarProdutosAsync()
+        {
             var todos = await _produtoStore.ListarAsync();
 
             if (!PesquisaAtiva)
@@ -38,17 +54,6 @@ namespace capivaridades_mercadoria.Pages
                     p.Preco.Contains(termo, StringComparison.OrdinalIgnoreCase) ||
                     p.Categoria.Contains(termo, StringComparison.OrdinalIgnoreCase))
                 .ToList();
-        }
-
-        public async Task<IActionResult> OnPostExcluirAsync(int id)
-        {
-            var removido = await _produtoStore.ExcluirAsync(id);
-            if (!removido)
-            {
-                TempData["MensagemErro"] = "Não foi possível excluir. É necessário manter pelo menos um produto no catálogo.";
-            }
-
-            return RedirectToPage();
         }
     }
 }

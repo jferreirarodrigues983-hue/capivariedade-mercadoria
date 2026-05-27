@@ -59,6 +59,37 @@ namespace capivaridades_mercadoria.Services
             }
         }
 
+        public async Task<Produto> AdicionarAsync(Produto produto)
+        {
+            await _lock.WaitAsync();
+            try
+            {
+                var produtos = File.Exists(_filePath)
+                    ? await LerArquivoSemLockAsync()
+                    : await MigrarOuCriarCatalogoAsync();
+
+                produto.Id = produtos.Count > 0 ? produtos.Max(p => p.Id) + 1 : 1;
+
+                if (string.IsNullOrWhiteSpace(produto.Categoria))
+                {
+                    produto.Categoria = "Celular";
+                }
+
+                if (string.IsNullOrWhiteSpace(produto.ImagemUrl))
+                {
+                    produto.ImagemUrl = new Produto().ImagemUrl;
+                }
+
+                produtos.Add(produto);
+                await GravarArquivoAsync(produtos);
+                return produto;
+            }
+            finally
+            {
+                _lock.Release();
+            }
+        }
+
         public async Task<bool> ExcluirAsync(int id)
         {
             await _lock.WaitAsync();

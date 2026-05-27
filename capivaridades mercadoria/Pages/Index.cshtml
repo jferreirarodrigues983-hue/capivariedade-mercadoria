@@ -9,6 +9,11 @@
     <div class="alert alert-warning" role="alert">@erro</div>
 }
 
+@if (TempData["MensagemSucesso"] is string sucesso)
+{
+    <div class="alert alert-success" role="alert">@sucesso</div>
+}
+
 <form method="get" class="barra-pesquisa" role="search">
     <label class="visually-hidden" for="busca">Pesquisar produtos</label>
     <input id="busca"
@@ -48,7 +53,7 @@
                 <a class="produto-imagem-link"
                    asp-page="/EditarProduto"
                    asp-route-id="@produto.Id"
-                   title="Cadastrar @produto.Nome">
+                   title="Editar @produto.Nome">
                     <img src="@produto.ImagemUrl"
                          alt="@produto.Nome"
                          loading="lazy" />
@@ -58,7 +63,7 @@
                 <div class="produto-acoes">
                     <a class="btn btn-sm btn-outline-primary"
                        asp-page="/EditarProduto"
-                       asp-route-id="@produto.Id">Cadastrar</a>
+                       asp-route-id="@produto.Id">Editar</a>
                     <form method="post"
                           asp-page-handler="Excluir"
                           asp-route-id="@produto.Id"
@@ -70,4 +75,8 @@
             </article>
         }
     </div>
+}
+else if (!Model.PesquisaAtiva)
+{
+    <p class="pesquisa-resumo">Nenhum produto no catálogo. <a asp-page="/CadastrarProduto">Cadastre o primeiro produto</a>.</p>
 }
