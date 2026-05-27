@@ -1,0 +1,77 @@
+@page
+@model EditarProdutoModel
+@{
+    ViewData["Title"] = "Cadastrar";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if (TempData["MensagemErro"] is string erro)
+{
+    <div class="alert alert-warning" role="alert">@erro</div>
+}
+
+@if (Model.ModoSelecao)
+{
+    <p>Escolha qual produto deseja cadastrar:</p>
+
+    <div class="grid-produtos grid-produtos--compacto">
+        @foreach (var produto in Model.Produtos)
+        {
+            <div class="produto-selecao-card">
+                <a class="produto-selecao"
+                   asp-page="/EditarProduto"
+                   asp-route-id="@produto.Id">
+                    <img src="@produto.ImagemUrl" alt="@produto.Nome" loading="lazy" />
+                    <span class="produto-categoria">@produto.Categoria</span>
+                    <strong>@produto.Nome</strong>
+                </a>
+                <form method="post"
+                      asp-page-handler="Excluir"
+                      asp-route-id="@produto.Id"
+                      class="produto-excluir-form"
+                      onsubmit="return confirm('Excluir @produto.Nome? Esta ação não pode ser desfeita.');">
+                    <button type="submit" class="btn btn-sm btn-danger w-100">Excluir</button>
+                </form>
+            </div>
+        }
+    </div>
+
+    <a class="btn btn-outline-secondary mt-3" asp-page="/Index">Voltar</a>
+}
+else
+{
+    <p>Cadastre as informações do <strong>@Model.Categoria</strong> abaixo.</p>
+
+    <form method="post">
+        <input type="hidden" asp-for="ProdutoId" />
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <div class="mb-3">
+            <label asp-for="Nome" class="form-label"></label>
+            <input asp-for="Nome" class="form-control" />
+            <span asp-validation-for="Nome" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Preco" class="form-label"></label>
+            <input asp-for="Preco" class="form-control" />
+            <span asp-validation-for="Preco" class="text-danger"></span>
+        </div>
+        <div class="d-flex flex-wrap gap-2 align-items-center">
+            <button class="btn btn-primary" type="submit">Salvar</button>
+            <a class="btn btn-outline-secondary" asp-page="/Index">Voltar</a>
+        </div>
+    </form>
+
+    <form method="post"
+          asp-page-handler="Excluir"
+          asp-route-id="@Model.ProdutoId"
+          class="produto-excluir-form mt-3"
+          onsubmit="return confirm('Excluir este produto? Esta ação não pode ser desfeita.');">
+        <button type="submit" class="btn btn-danger">Excluir produto</button>
+    </form>
+
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

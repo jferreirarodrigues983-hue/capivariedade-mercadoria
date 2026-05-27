@@ -1,0 +1,45 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": ".NET + Google Chrome",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/bin/Debug/net10.0/capivaridades mercadoria.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "ASPNETCORE_URLS": "http://localhost:5285"
+            },
+            "serverReadyAction": {
+                "action": "debugWithChrome",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
+                "uriFormat": "%s",
+                "killOnServerStop": true
+            }
+        },
+        {
+            "name": "Google Chrome (site já rodando)",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:5285",
+            "webRoot": "${workspaceFolder}/wwwroot",
+            "runtimeExecutable": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+            "runtimeArgs": [
+                "--remote-debugging-port=9222"
+            ]
+        },
+        {
+            "name": "Google Chrome + iniciar site",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:5285",
+            "webRoot": "${workspaceFolder}/wwwroot",
+            "runtimeExecutable": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+            "preLaunchTask": "run-web"
+        }
+    ]
+}

@@ -1,0 +1,23 @@
+[
+  {
+    "Id": 1,
+    "Nome": "Iphone 15 pro max",
+    "Preco": "3.499,00",
+    "Categoria": "Celular",
+    "ImagemUrl": "https://trocafone.vtexassets.com/arquivos/ids/297354-800-450?v=638410112977470000\u0026width=800\u0026height=450\u0026aspect=true"
+  },
+  {
+    "Id": 4,
+    "Nome": "Motorola Edge 40",
+    "Preco": "R$ 1.799,00",
+    "Categoria": "Celular",
+    "ImagemUrl": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800\u0026h=450\u0026fit=crop"
+  },
+  {
+    "Id": 5,
+    "Nome": "PlayStation 5",
+    "Preco": "R$ 3.999,00",
+    "Categoria": "Videogame",
+    "ImagemUrl": "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=800\u0026h=450\u0026fit=crop"
+  }
+]

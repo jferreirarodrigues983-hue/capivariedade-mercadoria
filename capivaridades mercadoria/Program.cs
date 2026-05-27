@@ -1,6 +1,9 @@
+using capivaridades_mercadoria.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddSingleton<IProdutoStore, JsonProdutoStore>();
 builder.Services.AddRazorPages();
 
 var app = builder.Build();

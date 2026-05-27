@@ -1,0 +1,43 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/capivaridades mercadoria.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "run-web",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "run",
+                "--project",
+                "${workspaceFolder}/capivaridades mercadoria.csproj",
+                "--launch-profile",
+                "http",
+                "--no-build"
+            ],
+            "dependsOn": "build",
+            "problemMatcher": {
+                "owner": "aspnetcore",
+                "pattern": {
+                    "regexp": "^$"
+                },
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": "\\bBuilding\\b",
+                    "endsPattern": "\\bNow listening on:\\s+http://"
+                }
+            },
+            "isBackground": true
+        }
+    ]
+}

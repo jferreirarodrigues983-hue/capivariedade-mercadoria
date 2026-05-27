@@ -1,22 +1,73 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Produtos";
 }
 
-<!doctype html> 
-<html>
-    <head> 
-        <title></title>
-    </head> 
-    <body>
-        <div class="grid-produtos">
-            <div class="carol">
-            <img src="https://trocafone.vtexassets.com/arquivos/ids/297354-800-450?v=638410112977470000&width=800&height=450&aspect=true"
-            <h3>produto</h3> 
-            <h3>preço</h3>
-            </div>
-        </div>
-    </body>
-</html>
+@if (TempData["MensagemErro"] is string erro)
+{
+    <div class="alert alert-warning" role="alert">@erro</div>
+}
 
+<form method="get" class="barra-pesquisa" role="search">
+    <label class="visually-hidden" for="busca">Pesquisar produtos</label>
+    <input id="busca"
+           class="barra-pesquisa__input form-control"
+           type="search"
+           name="busca"
+           value="@Model.Busca"
+           placeholder="Pesquisar por nome, preço ou categoria..." />
+    <button class="btn btn-primary barra-pesquisa__botao" type="submit">Pesquisar</button>
+    @if (Model.PesquisaAtiva)
+    {
+        <a class="btn btn-outline-secondary barra-pesquisa__limpar" asp-page="/Index">Limpar</a>
+    }
+</form>
+
+@if (Model.PesquisaAtiva)
+{
+    <p class="pesquisa-resumo">
+        @if (Model.Produtos.Count == 0)
+        {
+            <span>Nenhum produto encontrado para <strong>"@Model.Busca"</strong>.</span>
+        }
+        else
+        {
+            <span>@Model.Produtos.Count produto(s) encontrado(s) para <strong>"@Model.Busca"</strong>.</span>
+        }
+    </p>
+}
+
+@if (Model.Produtos.Count > 0)
+{
+    <div class="grid-produtos">
+        @foreach (var produto in Model.Produtos)
+        {
+            <article class="produto-card">
+                <span class="produto-categoria">@produto.Categoria</span>
+                <a class="produto-imagem-link"
+                   asp-page="/EditarProduto"
+                   asp-route-id="@produto.Id"
+                   title="Cadastrar @produto.Nome">
+                    <img src="@produto.ImagemUrl"
+                         alt="@produto.Nome"
+                         loading="lazy" />
+                </a>
+                <h3>@produto.Nome</h3>
+                <p class="produto-preco">@produto.Preco</p>
+                <div class="produto-acoes">
+                    <a class="btn btn-sm btn-outline-primary"
+                       asp-page="/EditarProduto"
+                       asp-route-id="@produto.Id">Cadastrar</a>
+                    <form method="post"
+                          asp-page-handler="Excluir"
+                          asp-route-id="@produto.Id"
+                          class="produto-excluir-form"
+                          onsubmit="return confirm('Excluir @produto.Nome? Esta ação não pode ser desfeita.');">
+                        <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
+                    </form>
+                </div>
+            </article>
+        }
+    </div>
+}

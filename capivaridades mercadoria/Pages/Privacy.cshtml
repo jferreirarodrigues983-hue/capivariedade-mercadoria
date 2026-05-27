@@ -1,8 +1,80 @@
 ﻿@page
 @model PrivacyModel
 @{
-    ViewData["Title"] = "Privacy Policy";
+    ViewData["Title"] = "Política de Privacidade";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<div class="privacy-conteudo">
+    <h1>@ViewData["Title"]</h1>
+    <p class="privacy-atualizacao">Última atualização: 27 de maio de 2026</p>
+
+    <p>
+        A <strong>Capivaridades Mercadoria</strong> respeita sua privacidade. Esta página explica
+        quais informações podem ser tratadas ao usar nosso site e como cuidamos delas.
+    </p>
+
+    <h2>1. Quem somos</h2>
+    <p>
+        Este site é operado pela Capivaridades Mercadoria, dedicada à divulgação e gestão de
+        produtos como celulares e videogames. Em caso de dúvidas sobre esta política, entre em
+        contato pelos canais informados no rodapé do site.
+    </p>
+
+    <h2>2. Dados que coletamos</h2>
+    <p>Ao utilizar o site, podemos tratar as seguintes informações:</p>
+    <ul>
+        <li><strong>Dados de produtos:</strong> nome, preço, categoria e imagem cadastrados por você na área de cadastro.</li>
+        <li><strong>Dados técnicos:</strong> endereço IP, tipo de navegador e páginas acessadas, de forma automática, para segurança e funcionamento do sistema.</li>
+        <li><strong>Cookies:</strong> pequenos arquivos usados para lembrar preferências e manter sua sessão ativa, quando aplicável.</li>
+    </ul>
+
+    <h2>3. Como usamos suas informações</h2>
+    <p>Utilizamos os dados para:</p>
+    <ul>
+        <li>Exibir e gerenciar o catálogo de produtos na página inicial;</li>
+        <li>Permitir cadastro, alteração, pesquisa e exclusão de produtos;</li>
+        <li>Melhorar a experiência de navegação e a segurança do site;</li>
+        <li>Cumprir obrigações legais, quando necessário.</li>
+    </ul>
+
+    <h2>4. Armazenamento</h2>
+    <p>
+        As informações dos produtos são salvas em arquivos no servidor da aplicação
+        (<code>Data/produtos.json</code>), utilizados apenas para o funcionamento da loja virtual.
+        Não vendemos nem compartilhamos seus dados com terceiros para fins de marketing.
+    </p>
+
+    <h2>5. Seus direitos</h2>
+    <p>
+        De acordo com a Lei Geral de Proteção de Dados (LGPD), você pode solicitar acesso,
+        correção ou exclusão de dados pessoais que estejam sob nosso controle, quando aplicável.
+        Para exercer esses direitos, entre em contato conosco.
+    </p>
+
+    <h2>6. Segurança</h2>
+    <p>
+        Adotamos medidas razoáveis para proteger as informações contra acesso não autorizado,
+        alteração ou destruição. Mesmo assim, nenhum sistema na internet é 100% seguro; use o site
+        com senhas fortes e mantenha seu dispositivo atualizado.
+    </p>
+
+    <h2>7. Links externos</h2>
+    <p>
+        Imagens e conteúdos podem ser carregados de sites de terceiros (por exemplo, serviços de
+        hospedagem de imagens). Esses sites possuem políticas próprias; recomendamos a leitura
+        delas ao sair da nossa página.
+    </p>
+
+    <h2>8. Alterações nesta política</h2>
+    <p>
+        Podemos atualizar este texto a qualquer momento. A data no topo da página indica a versão
+        mais recente. O uso continuado do site após mudanças significa que você concorda com os
+        novos termos.
+    </p>
+
+    <p class="privacy-rodape">
+        Obrigado por confiar na <strong>Capivaridades Mercadoria</strong>.
+    </p>
+
+    <a class="btn btn-outline-secondary mt-3" asp-page="/Index">Voltar à loja</a>
+</div>
